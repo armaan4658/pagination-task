@@ -538,55 +538,59 @@ var setNavLink = ()=>{
   
 }
 
-var tableHead = (container)=>{
-  var row1 = document.createElement("div");
-  row1.setAttribute("class","row");
-  var col1 = document.createElement("div");
-  col1.setAttribute("class","col-sm-2 col-md-2 col-lg-2 col-xl-2");
-  var col2 = document.createElement("div");
-  col2.setAttribute("class","col-sm-4 col-md-4 col-lg-4 col-xl-4");
-  var col3 = document.createElement("div");
-  col3.setAttribute("class","col-sm-6 col-md-6 col-lg-6 col-xl-6");
-  col1.innerHTML = `<h2>ID</h2>`;
-  col2.innerHTML = `<h2>Name</h2>`;
-  col3.innerHTML = `<h2>E-Mail</h2>`;
-  row1.append(col1,col2,col3);
-  container.append(row1);
+var tableHead = (table,col2)=>{
+  var thead = document.createElement("thead");
+  var tr = document.createElement("tr");
+  var th1 = document.createElement("th");
+  var th2 = document.createElement("th");
+  var th3 = document.createElement("th");
+  th1.setAttribute("scope","col");
+  th2.setAttribute("scope","col");
+  th3.setAttribute("scope","col");
+  th1.innerHTML =  `<h2>ID</h2>`;
+  th2.innerHTML = `<h2>Name</h2>`;
+  th3.innerHTML = `<h2>E-Mail</h2>`;
+  tr.append(th1,th2,th3);
+  thead.append(tr);
+  table.append(thead);
+  col2.append(table);
 }
-var tableContent = (container,start,end)=>{
+var tableContent = (table,start,end)=>{
+  var tbody = document.createElement("tbody");
   for(let i = start; i < end; i++){
-      var nrow = document.createElement("div");
-      nrow.setAttribute("class","row");
-      var ncol1 = document.createElement("div");
-      ncol1.setAttribute("class","col-sm-2 col-md-2 col-lg-2 col-xl-2");
-      var ncol2 = document.createElement("div");
-      ncol2.setAttribute("class","col-sm-4 col-md-4 col-lg-4 col-xl-4");
-      var ncol3 = document.createElement("div");
-      ncol3.setAttribute("class","col-sm-6 col-md-6 col-lg-6 col-xl-6");
-      ncol1.innerHTML = `<h6>${data[i].id}</h6>`;
-      ncol2.innerHTML = `<h6>${data[i].name}</h6>`;
-      ncol3.innerHTML = `<h6>${data[i].email}</h6>`;
-      nrow.append(ncol1,ncol2,ncol3);
-      container.append(nrow);
+    var tr = document.createElement("tr");
+    var th1 = document.createElement("th");
+    var td2 = document.createElement("td");
+    var td3 = document.createElement("td");
+    th1.setAttribute("scope","row");
+    th1.innerHTML = `<h6>${data[i].id}</h6>`;
+    td2.innerHTML = `<h6>${data[i].name}</h6>`;
+    td3.innerHTML = `<h6>${data[i].email}</h6>`;
+    tr.append(th1,td2,td3);
+    tbody.append(tr);
   }
-  document.body.append(container);
+  table.append(tbody);
 }
 var page1 = ()=>{
     var container = document.createElement("div");
     container.setAttribute("class","container");
-    tableHead(container);
-    tableContent(container,0,25);
+    var row = document.createElement("div");
+    row.setAttribute("class","row");
+    var col1 = document.createElement("div");
+    col1.setAttribute("class","col-sm-1 col-md-1 col-lg-1 col-xl-1")
+    var col2 = document.createElement("div");
+    col2.setAttribute("class","col-sm-10 col-md-10 col-lg-10 col-xl-10")
+    var col3 = document.createElement("div");
+    col3.setAttribute("class","col-sm-1 col-md-1 col-lg-1 col-xl-1")
+    row.append(col1,col2,col3);
+    container.append(row);
+    document.body.append(container);
+    var table = document.createElement("table");
+    table.setAttribute("class","table table-striped");
+    tableHead(table,col2);
+    tableContent(table,0,25);
     navBar();
     navContent();
     setNavLink();
 }
-
 page1();
-var rows = querySelectorAll(".row");
-for(let i in rows){
-  if(i%2==0){
-    rows[i].setAttribute("class","row greybg");
-  }
-}
-
-
