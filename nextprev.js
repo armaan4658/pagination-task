@@ -39,3 +39,7 @@ if(page4=="page4.html"){
     a[0].setAttribute("href","page3.html");
     a[5].style="opacity:0.5;";
 }
+if(window.location.href=="https://pedantic-haibt-100ad9.netlify.app/"){
+    a[0].style="opacity:0.5;";
+    a[5].setAttribute("href","page2.html");
+}
