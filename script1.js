@@ -5,8 +5,11 @@
   //sending the request
   req.send();
   //loading the function
-  var navBar = ()=>{
-    var div = document.createElement("div");
+  var navBar = (container)=>{
+    var row = document.createElement("div");
+    row.setAttribute("class","row");
+    var col2 = document.createElement("div");
+    col2.setAttribute("class","col-sm-12 col-md-12 col-lg-12 col-xl-12")
     var nav = document.createElement("nav");
     nav.setAttribute("aria-label","Page navigation example");
     var ul = document.createElement("ul");
@@ -20,9 +23,10 @@
         li.append(btn);
         ul.append(li);
         nav.append(ul);
-        div.append(nav);
-        document.body.append(div);
+        col2.append(nav);
     }
+    row.append(col2);
+    container.append(row);
   }
   var navContent = ()=>{
     var btn = document.querySelectorAll("button");
@@ -94,9 +98,9 @@
       div.innerHTML = `<h4>Page <span></span> of 10<h4>`;
       div.style="text-align:center;"
       document.body.append(div);
-      navBar();
+      navBar(container);
       navContent();
-      
+      //Getting data form api
       var page1 = getData(data,0,10);
       var page2 = getData(data,10,20)
       var page3 = getData(data,20,30)
@@ -116,9 +120,10 @@
       checknext(btn);
       var span = document.querySelector("span");
       span.innerText = 1;
+      //when previous button is clicked
       btn[0].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
+        var th = getTh();
+        var td = getTd();
         var currentPage = parseInt(localStorage.getItem("click"));
         if(currentPage == 1){
           checkprev(btn);
@@ -133,9 +138,10 @@
         }
         
       })
+      //when next button is clicked
       btn[11].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
+        var th = getTh();
+        var td = getTd();
         var currentPage = parseInt(localStorage.getItem("click"));
         if(currentPage == 10){
           checknext(btn);
@@ -150,117 +156,52 @@
           span.innerText = currentPage;
         }
       })
+      //when button is clicked respective page will be loaded
       btn[1].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page1,th,td);
-            localStorage.setItem("click", "1");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 1;
+        loadPage(pages[0],1,btn);
       })
-      
       btn[2].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page2,th,td);
-            localStorage.setItem("click", "2");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 2;
+        loadPage(pages[1],2,btn);
       })
-
       btn[3].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page3,th,td);
-            localStorage.setItem("click", "3");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 3;
-      })
-      
+        loadPage(pages[2],3,btn);
+      })     
       btn[4].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page4,th,td);
-            localStorage.setItem("click", "4");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 4;
-      })
-      
+        loadPage(pages[3],4,btn);
+      })     
       btn[5].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page5,th,td);
-            localStorage.setItem("click", "5");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 5;
+        loadPage(pages[4],5,btn);
       })
       btn[6].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page6,th,td);
-            localStorage.setItem("click", "6");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 6;
-      })
-      
+        loadPage(pages[5],6,btn);
+      })      
       btn[7].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page7,th,td);
-            localStorage.setItem("click", "7");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 7;
+        loadPage(pages[6],7,btn);
       })
-
       btn[8].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page8,th,td);
-            localStorage.setItem("click", "8");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 8;
+        loadPage(pages[7],8,btn);
       })
-
       btn[9].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page9,th,td);
-            localStorage.setItem("click", "9");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 9;
+        loadPage(pages[8],9,btn);
       })
-
       btn[10].addEventListener("click",()=>{
-        var th = document.querySelectorAll("tbody > tr > th >h6");
-        var td = document.querySelectorAll("tbody > tr > td >h6");
-            tableUpdate(page10,th,td);
-            localStorage.setItem("click", "10");
-            checkprev(btn);
-            checknext(btn);
-            var span = document.querySelector("span");
-            span.innerText = 10;
+        loadPage(pages[9],10,btn);
       })
       
       
   }
+
+function loadPage(pages,pageNo,btn){
+        var th = getTh();
+        var td = getTd();
+        tableUpdate(pages,th,td);
+        localStorage.setItem("click",pageNo);
+        checknext(btn);
+        checkprev(btn);
+        var span = document.querySelector("span");
+        span.innerText = pageNo;
+
+}
 
 function tableUpdate(data,th,td){
         
@@ -301,4 +242,13 @@ function checknext(btn){
     }else{
       btn[11].style="opacity:1;"
     }
+}
+
+function getTh(){
+    var th = document.querySelectorAll("tbody > tr > th >h6");
+    return th;
+}
+function getTd(){
+    var td = document.querySelectorAll("tbody > tr > td >h6");
+    return td;
 }
