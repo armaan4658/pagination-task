@@ -32,15 +32,7 @@
         btn[i].innerHTML = `<h4>${i}</h4>`;
     }
   }
-  var setNavLink = ()=>{
-    var btn = document.querySelectorAll("button");
-    for(let i = 1; i < 11; i++){
-        if(btn[i].onclick){
-            return i;
-        }
-    }
-    
-  }
+
   
   var tableHead = (table,col2)=>{
     var thead = document.createElement("thead");
@@ -269,8 +261,6 @@
       
       
   }
-
-
 
 function tableUpdate(data,th,td){
         
