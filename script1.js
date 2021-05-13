@@ -97,6 +97,11 @@
       table.setAttribute("class","table table-striped");
       tableHead(table,col2);
       tableContent(table,0,10,data);
+      var div = document.createElement("div");
+      div.setAttribute("id","indicator");
+      div.innerHTML = `<h4>Page <span></span> of 10<h4>`;
+      div.style="text-align:center;"
+      document.body.append(div);
       navBar();
       navContent();
       
@@ -117,6 +122,8 @@
       localStorage.setItem("click", "1");
       checkprev(btn);
       checknext(btn);
+      var span = document.querySelector("span");
+      span.innerText = 1;
       btn[0].addEventListener("click",()=>{
         var th = document.querySelectorAll("tbody > tr > th >h6");
         var td = document.querySelectorAll("tbody > tr > td >h6");
@@ -129,6 +136,8 @@
           localStorage.setItem("click",currentPage);
           checkprev(btn);
           checknext(btn);
+          var span = document.querySelector("span");
+          span.innerText = currentPage;
         }
         
       })
@@ -140,11 +149,13 @@
           checknext(btn);
         }else{
           tableUpdate(pages[currentPage],th,td);
+          
           currentPage++;
           localStorage.setItem("click",currentPage);
           checknext(btn);
           checkprev(btn);
-        
+          var span = document.querySelector("span");
+          span.innerText = currentPage;
         }
       })
       btn[1].addEventListener("click",()=>{
@@ -154,6 +165,8 @@
             localStorage.setItem("click", "1");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 1;
       })
       
       btn[2].addEventListener("click",()=>{
@@ -163,6 +176,8 @@
             localStorage.setItem("click", "2");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 2;
       })
 
       btn[3].addEventListener("click",()=>{
@@ -172,6 +187,8 @@
             localStorage.setItem("click", "3");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 3;
       })
       
       btn[4].addEventListener("click",()=>{
@@ -181,6 +198,8 @@
             localStorage.setItem("click", "4");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 4;
       })
       
       btn[5].addEventListener("click",()=>{
@@ -190,6 +209,8 @@
             localStorage.setItem("click", "5");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 5;
       })
       btn[6].addEventListener("click",()=>{
         var th = document.querySelectorAll("tbody > tr > th >h6");
@@ -198,6 +219,8 @@
             localStorage.setItem("click", "6");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 6;
       })
       
       btn[7].addEventListener("click",()=>{
@@ -207,6 +230,8 @@
             localStorage.setItem("click", "7");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 7;
       })
 
       btn[8].addEventListener("click",()=>{
@@ -216,6 +241,8 @@
             localStorage.setItem("click", "8");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 8;
       })
 
       btn[9].addEventListener("click",()=>{
@@ -225,6 +252,8 @@
             localStorage.setItem("click", "9");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 9;
       })
 
       btn[10].addEventListener("click",()=>{
@@ -234,6 +263,8 @@
             localStorage.setItem("click", "10");
             checkprev(btn);
             checknext(btn);
+            var span = document.querySelector("span");
+            span.innerText = 10;
       })
       
       
